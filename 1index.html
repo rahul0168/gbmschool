@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>American School of Bombay - Recreation</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+
+    <style>
+        :root {
+            --dark-green: #1a4742;
+            --olive-brown: #a48948;
+            --light-bg: #f5f5f5;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --font-serif: 'Lora', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        /* --- Off-Canvas Menu --- */
+        .offcanvas-menu {
+            position: fixed; top: 0; left: 0; width: 100%; max-width: 550px; height: 100vh;
+            background-color: var(--light-bg); color: var(--dark-green); z-index: 1050;
+            transform: translateX(-100%); transition: transform 0.4s ease-in-out;
+            padding: 2rem 3rem; display: flex; flex-direction: column; overflow-y: auto;
+        }
+        .offcanvas-menu.open { transform: translateX(0); }
+        .menu-backdrop {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5); z-index: 1040;
+            opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s;
+        }
+        .menu-backdrop.open { opacity: 1; visibility: visible; }
+        .menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; }
+        .menu-close-btn, .portal-link {
+            display: flex; align-items: center; gap: 0.75rem; font-family: var(--font-sans);
+            font-weight: bold; font-size: 0.9rem; text-decoration: none; color: var(--dark-green);
+            background: none; border: none; padding: 0; cursor: pointer;
+        }
+        .menu-close-btn .icon-box { background-color: var(--dark-green); color: var(--light-bg); width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; }
+        .menu-nav-links { list-style: none; padding: 0; margin: 0; }
+        .menu-nav-links > li > a { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-serif); font-size: 2.2rem; color: var(--dark-green); text-decoration: none; padding: 0.5rem 0; margin-bottom: 0.5rem; transition: color 0.2s; }
+        .menu-nav-links > li > a:hover { color: var(--olive-brown); }
+        .menu-nav-links > li > a > i { font-size: 1.5rem; transition: transform 0.4s ease-in-out; }
+        .has-submenu.open > a > i { transform: rotate(90deg); }
+        .submenu { list-style: none; padding-left: 1.5rem; margin: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .has-submenu.open > .submenu { max-height: 500px; }
+        .submenu li a { font-family: var(--font-sans); font-size: 1.2rem; color: var(--dark-green); text-decoration: none; display: block; padding: 0.5rem 0; }
+        .menu-search { position: relative; margin-top: 2rem; }
+        .menu-search input { width: 100%; border: 2px solid var(--dark-green); padding: 0.75rem 2.5rem 0.75rem 1rem; background: transparent; font-size: 1rem; font-family: var(--font-sans); color: var(--dark-green); outline: none; }
+        .menu-search i { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--dark-green); }
+        .menu-illustration { position: absolute; bottom: 1rem; right: 2rem; width: 250px; opacity: 0.4; z-index: -1; }
+
+        /* --- Header & Hero Section --- */
+        .hero-section { height: 100vh; color: var(--text-light); display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        #heroVideo { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -2; object-fit: cover; }
+        .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(26, 71, 66, 0.6); z-index: -1; }
+        .top-bar { background-color: rgba(0,0,0,0.3); color: var(--text-light); font-size: 0.8rem; text-align: center; padding: 5px; position: relative; z-index: 2; }
+        .main-nav { padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; width: 100%; position: relative; z-index: 2; }
+        .nav-left, .nav-right { display: flex; align-items: center; gap: 2rem; }
+        .main-nav a, .main-nav span, .sticky-nav a, .sticky-nav span { color: var(--text-light); text-decoration: none; font-weight: 500; letter-spacing: 1px; font-size: 0.9rem; }
+        .menu-btn { cursor: pointer; display: flex; align-items: center; gap: 0.5rem; }
+        .hamburger-icon { width: 24px; height: 18px; display: flex; flex-direction: column; justify-content: space-between; }
+        .hamburger-icon span { display: block; width: 100%; height: 2px; background-color: white; }
+        .nav-logo { font-weight: bold; font-size: 1.1rem; }
+        .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); text-align: center; color: var(--text-light); z-index: 2; }
+        .scroll-indicator i { font-size: 1.5rem; }
+
+        /* --- Sticky Navigation --- */
+        .sticky-nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background-color: rgba(26, 71, 66, 0.95);
+            padding: 1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
+            transform: translateY(-120%);
+            opacity: 0;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        }
+        .sticky-nav.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* --- Sections --- */
+        .mission-section { background-color: var(--olive-brown); color: var(--dark-green); padding: 8rem 0; }
+        .mission-section p { font-family: var(--font-serif); font-size: 1.5rem; line-height: 1.6; max-width: 600px; }
+        .mission-illustration { width: 100%; max-width: 300px; opacity: 0.7; margin-top: 2rem; }
+        
+        .pathways-section { padding: 8rem 0; position: relative; min-height: 150vh; }
+        .pathways-title { font-family: var(--font-serif); font-size: 5rem; font-weight: 400; }
+        .pathways-title strong { font-family: var(--font-sans); font-weight: 900; display: block; margin-top: -1.5rem; }
+        .pathways-subtitle { font-family: var(--font-serif); font-size: 1.2rem; max-width: 450px; margin: 1rem auto; }
+        .pathways-subtitle a { color: var(--olive-brown); text-decoration: underline; }
+        .pathways-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .pathways-element { position: absolute; will-change: transform; }
+        .pathways-card { background-color: white; padding: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 250px; }
+        .pathways-card img { width: 100%; height: 150px; object-fit: cover; margin-bottom: 1rem; }
+        .pathways-card h5 { font-size: 1rem; margin-bottom: 1rem; }
+        .pathways-card .read-story { color: var(--dark-green); font-weight: bold; text-decoration: none; }
+        .pathways-card .social-icon { position: absolute; top: 1.5rem; left: 1.5rem; color: white; background: rgba(0,0,0,0.4); border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+        #banyan-tree { top: 40%; left: 50%; transform: translateX(-50%); width: 450px; }
+        #card-1 { top: 15%; left: 10%; } #card-2 { top: 65%; left: 15%; } #card-3 { top: 25%; left: 40%; transform: translateX(-50%); } #card-4 { top: 10%; left: 75%; } #card-5 { top: 60%; left: 70%; }
+        
+        .motto-section { background-color: var(--dark-green); color: var(--text-light); padding: 8rem 0; text-align: center; }
+        .motto-section h2 { font-size: 4.5rem; font-weight: 700; }
+
+        /* --- New Video Feature Section --- */
+        .video-feature-section {
+            position: relative;
+            height: 70vh;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        #featureVideo {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            min-width: 100%; min-height: 100%; width: auto; height: auto;
+            z-index: -2; object-fit: cover;
+        }
+        .video-feature-section .video-overlay { background-color: rgba(26, 71, 66, 0.7); }
+        .video-feature-content { position: relative; z-index: 1; }
+        .video-feature-content h2 { font-size: 3rem; font-family: var(--font-serif); margin-bottom: 1.5rem; }
+        .video-feature-content .btn-custom {
+            background-color: transparent; border: 2px solid var(--text-light); color: var(--text-light);
+            padding: 0.75rem 2rem; text-decoration: none; font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .video-feature-content .btn-custom:hover { background-color: var(--text-light); color: var(--dark-green); }
+
+        /* --- Footer --- */
+        footer { background-color: var(--dark-green); color: var(--text-light); padding: 4rem 2rem 2rem; font-size: 0.9rem; }
+        footer h5 { font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; }
+        footer p, footer a { color: rgba(255, 255, 255, 0.8); text-decoration: none; }
+        footer .footer-link { display: block; margin-bottom: 0.5rem; text-decoration: underline; text-underline-offset: 4px; color: var(--text-light); }
+        footer .social-icons-footer a { font-size: 1.5rem; margin-right: 1rem; color: var(--text-light); }
+        .footer-logos img { max-height: 40px; margin-right: 1.5rem; filter: grayscale(100%) brightness(5); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1.5rem; margin-top: 2rem; font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+        
+        @media (max-width: 992px) {
+            .nav-right { display: none; }
+            .pathways-section { padding: 4rem 0; min-height: auto; }
+            .pathways-container { position: static; display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+            .pathways-element { position: static; transform: none !important; }
+            #banyan-tree { display: none; }
+            .pathways-title { font-size: 3.5rem; } .pathways-title strong { margin-top: -1rem; }
+            .motto-section h2 { font-size: 3rem; }
+            .video-feature-content h2 { font-size: 2.5rem; }
+        }
+        @media (max-width: 768px) {
+            .mission-section p { font-size: 1.2rem; }
+            .offcanvas-menu { padding: 1.5rem; } .menu-nav-links > li > a { font-size: 1.8rem; } .menu-header { margin-bottom: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Off-Canvas Menu -->
+    <div id="menu-backdrop" class="menu-backdrop"></div>
+    <nav id="offcanvas-menu" class="offcanvas-menu">
+        <div class="menu-header">
+            <button id="close-menu-btn" class="menu-close-btn">
+                <span class="icon-box"><i class="fa-solid fa-times"></i></span>
+                <span>CLOSE</span>
+            </button>
+            <a href="#" class="portal-link">
+                <i class="fa-solid fa-lock"></i>
+                <span>PORTAL</span>
+            </a>
+        </div>
+        <ul class="menu-nav-links">
+            <li><a href="#">Home</a></li>
+            <li class="has-submenu"><a href="#"><span>Life at ASB</span> <i class="fa-solid fa-chevron-right"></i></a><ul class="submenu"><li><a href="#">Athletics</a></li><li><a href="#">Arts & Culture</a></li><li><a href="#">Student Life</a></li></ul></li>
+            <li class="has-submenu"><a href="#"><span>Curriculum & Learning</span> <i class="fa-solid fa-chevron-right"></i></a><ul class="submenu"><li><a href="#">Elementary School</a></li><li><a href="#">Middle School</a></li><li><a href="#">High School</a></li></ul></li>
+            <li><a href="#"><span>Beyond the Classroom</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li class="has-submenu"><a href="#"><span>Join Our School</span> <i class="fa-solid fa-chevron-right"></i></a><ul class="submenu"><li><a href="#">Admissions Process</a></li><li><a href="#">Tuition & Fees</a></li></ul></li>
+            <li><a href="#"><span>Our Community</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+        </ul>
+        <div class="menu-search"><input type="text" placeholder="SEARCH"><i class="fa-solid fa-search"></i></div>
+        <img src="https://www.svgrepo.com/show/490455/microscope.svg" alt="Illustration" class="menu-illustration">
+    </nav>
+
+    <!-- Header & Hero -->
+    <header>
+        <!-- <div class="top-bar">Located in the heart of Mumbai, India, the American School of Bombay is a coeducational, independent, IB day school from Pre-K to Grade 12.</div> -->
+        <section class="hero-section">
+            <div class="video-overlay"></div>
+            <video playsinline autoplay muted loop id="heroVideo"><source src="3195392-uhd_3840_2160_25fps.mp4" type="video/mp4"></video>
+            <nav class="main-nav">
+                <div class="nav-left">
+                    <div class="menu-btn" data-menu-toggle>
+                        <div class="hamburger-icon"><span></span><span></span><span></span></div>
+                        <span>MENU</span>
+                    </div>
+                     <span>LANGUAGE</span>
+                </div>
+                <div class="nav-logo"><span><img src="https://www.gbmschool.co.in/assets/gopi-birla-memorial-school-logo.png" alt="" style="    width: 44%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;"></span></div>
+                <div class="nav-right"><a href="#">ADMISSIONS</a><a href="#">STORIES</a><a href="#">WORK AT ASB</a></div>
+            </nav>
+            <div class="scroll-indicator"><i class="fa-solid fa-arrow-down"></i><div>SCROLL</div></div>
+        </section>
+    </header>
+
+    <!-- Sticky Navigation Bar (initially hidden) -->
+    <div id="sticky-nav" class="sticky-nav">
+        <div class="menu-btn" data-menu-toggle>
+            <div class="hamburger-icon"><span></span><span></span><span></span></div>
+            <span>MENU</span>
+        </div>
+        <div class="nav-right"><a href="#">ADMISSIONS</a><a href="#">STORIES</a><a href="#">WORK AT ASB</a></div>
+    </div>
+
+
+    <main>
+        <section class="mission-section"><div class="container"><div class="row align-items-center"><div class="col-lg-7"><p>We inspire all of our students to continuous inquiry, empowering them with the skills, courage, optimism, and integrity to pursue their dreams and enhance the lives of others.</p></div><div class="col-lg-5 text-center"><img src="https://www.svgrepo.com/show/289299/climbing.svg" alt="Climbing Illustration" class="mission-illustration"></div></div></div></section>
+        <section class="pathways-section"><div class="container text-center"><h2 class="pathways-title">Individualized <br> <strong>Pathways</strong></h2><p class="pathways-subtitle">Students are empowered by dreams, and they are equipped with skills to <a href="#">become life-long learners.</a></p></div><div class="pathways-container"><div id="banyan-tree" class="pathways-element" data-speed="0.5"><img src="https://www.svgrepo.com/show/493406/banyan-tree.svg" alt="Banyan Tree Illustration"></div><div id="card-1" class="pathways-element pathways-card" data-speed="1.3"><span class="social-icon"><i class="fab fa-instagram"></i></span><img src="https://images.unsplash.com/photo-1594434533433-03b4d08b5d43?q=80&w=400" alt="Students celebrating"><h5>Honoring the past. Celebrating the...</h5><a href="#" class="read-story">Read story ></a></div><div id="card-2" class="pathways-element pathways-card" data-speed="0.8"><span class="social-icon"><i class="fab fa-instagram"></i></span><img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=400" alt="Students playing"><h5>New year. New possibilities. Endless...</h5><a href="#" class="read-story">Read story ></a></div><div id="card-3" class="pathways-element pathways-card" data-speed="1.1"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=400" alt="Student project"><h5>Immediate Opening: Secondary ...</h5><a href="#" class="read-story">Read story ></a></div><div id="card-4" class="pathways-element pathways-card" data-speed="1.2"><span class="social-icon"><i class="fab fa-facebook-f"></i></span><img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=400" alt="Teacher with kids"><h5>This morning, ASB's High School (HS)...</h5><a href="#" class="read-story">Read story ></a></div><div id="card-5" class="pathways-element pathways-card" data-speed="0.7"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=400" alt="Classroom"><h5>From baby steps to bold futures... You've...</h5><a href="#" class="read-story">Read story ></a></div></div></section>
+        <section class="motto-section"><div class="container"><h2>We are what school should be.</h2></div></section>
+
+        <!-- New Full Width Video Section -->
+        <section class="video-feature-section">
+            <div class="video-overlay"></div>
+            <video playsinline autoplay muted loop id="featureVideo"><source src="https://assets.mixkit.co/videos/preview/mixkit-group-of-students-in-a-library-857-large.mp4" type="video/mp4"></video>
+            <div class="container">
+                <div class="video-feature-content">
+                    <h2>Discover Our Community</h2>
+                    <a href="#" class="btn-custom">EXPLORE STUDENT LIFE</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+         <div class="container"><div class="row"><div class="col-lg-3 col-md-6 mb-4"><h5>Elementary Campus</h5><p>PreK – Grade 5 (3-11-year-olds)<br>Commercial 2, Tower 4<br>Kohinoor City, Off LBS Marg<br>Kurla (W), Mumbai 400070.</p><a href="#" class="footer-link">GET DIRECTIONS</a></div><div class="col-lg-3 col-md-6 mb-4"><h5>Secondary Campus</h5><p>Middle School (11-14-year-olds)<br>High School (14-18-year-olds)<br>SF2, G Block, Bandra-Kurla Complex Road,<br>Bandra (E), Mumbai 400051.</p><a href="#" class="footer-link">GET DIRECTIONS</a></div><div class="col-lg-3 col-md-6 mb-4"><h5>Contact Us</h5><a href="#" class="footer-link">+91 22 6772 7272</a><a href="#" class="footer-link">SEND AN INQUIRY</a><h5 class="mt-4">Key Links</h5><a href="#" class="footer-link">ADMISSIONS</a><a href="#" class="footer-link">VACANCIES</a></div><div class="col-lg-3 col-md-6 mb-4"><h5>Connect With</h5><p>@AmericanSchoolOfBombay</p><div class="social-icons-footer"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div><p class="mt-4">Learn more about our commitment to <a href="#" class="footer-link d-inline">Student Safeguarding</a></p></div></div><div class="d-flex align-items-center footer-logos mt-4"><img src="https://www.ibo.org/contentassets/75854f3569474811843c6838a113d74a/logo-ib-110.png" alt="IB Diploma Programme"><img src="https://upload.wikimedia.org/wikipedia/en/b/b3/MSA-CESS_Logo.png" alt="MSA CESS"><img src="https://www.nesacenter.org/images/nesa-logo_white-horiz.png" alt="NESA"></div><div class="footer-bottom d-flex justify-content-between"><div>TERMS | SITEMAP</div><div>#SCHOOLWEBSITE DESIGN BY INTERACTIVE SCHOOLS</div></div></div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const offcanvasMenu = document.getElementById('offcanvas-menu');
+            const menuBackdrop = document.getElementById('menu-backdrop');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            
+            const openMenu = () => {
+                offcanvasMenu.classList.add('open');
+                menuBackdrop.classList.add('open');
+            };
+            const closeMenu = () => {
+                offcanvasMenu.classList.remove('open');
+                menuBackdrop.classList.remove('open');
+            };
+
+            // Attach open menu event to both menu buttons
+            document.querySelectorAll('[data-menu-toggle]').forEach(btn => btn.addEventListener('click', openMenu));
+            closeMenuBtn.addEventListener('click', closeMenu);
+            menuBackdrop.addEventListener('click', closeMenu);
+
+            // --- Dropdown Menu Logic ---
+            document.querySelectorAll('.has-submenu > a').forEach(toggle => {
+                toggle.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    toggle.parentElement.classList.toggle('open');
+                });
+            });
+
+            // --- Sticky Nav Logic ---
+            const stickyNav = document.getElementById('sticky-nav');
+            const heroSection = document.querySelector('.hero-section');
+            const heroHeight = heroSection.offsetHeight;
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > heroHeight - 50) { // Show a little before hero is fully gone
+                    stickyNav.classList.add('visible');
+                } else {
+                    stickyNav.classList.remove('visible');
+                }
+            });
+
+            // --- GSAP ScrollTrigger Animation ---
+            gsap.registerPlugin(ScrollTrigger);
+            if (window.innerWidth > 992) {
+                gsap.utils.toArray('.pathways-element').forEach(element => {
+                    const speed = element.dataset.speed || 1;
+                    const yPercentMovement = -(speed * 50);
+                    gsap.to(element, { yPercent: yPercentMovement, ease: "none", scrollTrigger: { trigger: ".pathways-section", start: "top bottom", end: "bottom top", scrub: true }});
+                });
+            }
+        });
+    </script>
+</body>
+</html>

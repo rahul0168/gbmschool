@@ -1086,4 +1086,67 @@
 
 
  /* end director section */
- /* Add this CSS to your .gbms-bootstrap-container */
+
+
+ 
+ /* Floating Action Button (FAB) */
+ .admission-fab {
+     position: fixed;
+     bottom: 25px;
+     right: 25px;
+     width: 60px;
+     height: 60px;
+     background-color: #ffd700;
+     /* Gold accent */
+     color: #0a2a6b;
+     /* Main brand blue */
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 1.5rem;
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+     text-decoration: none;
+     z-index: 1050;
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+
+ .admission-fab:hover {
+     transform: scale(1.1);
+     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+     color: #0a2a6b;
+ }
+
+ /* Custom Modal Styling */
+ #admissionModal .modal-header {
+     background: linear-gradient(135deg, #0a2a6b, #00509e);
+     color: #ffffff;
+     border-bottom: none;
+ }
+
+ #admissionModal .modal-title {
+     font-weight: 600;
+ }
+
+ #admissionModal .btn-close {
+     filter: invert(1) grayscale(100%) brightness(200%);
+     /* Makes the 'X' white */
+ }
+
+ #admissionModal .form-label {
+     font-weight: 500;
+     color: #333;
+ }
+
+ #admissionModal .btn-admission-submit {
+     background-color: #ffd700;
+     border-color: #ffd700;
+     color: #0a2a6b;
+     font-weight: 600;
+     padding: 10px 25px;
+ }
+
+ #admissionModal .btn-admission-submit:hover {
+     background-color: #e6c300;
+     border-color: #e6c300;
+ }

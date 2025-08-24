@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>American School of Bombay - Recreation</title>
+    <title>Gopi Birla Memorial School</title>
 
     <!-- Bootstrap CSS -->
     <link
@@ -28,78 +28,115 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
- <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
 
-    /* Loader wrapper */
-    .loader-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #0a2a6b; /* Brand blue */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
-    }
+      /* Loader wrapper */
+      .loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0a2a6b; /* Brand blue */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
 
-    .loader-wrapper.loaded {
-      opacity: 0;
-      visibility: hidden;
-    }
+      .loader-wrapper.loaded {
+        opacity: 0;
+        visibility: hidden;
+      }
 
-    /* SVG container */
-    .school-logo-svg {
-      width: 130px;
-      height: 130px;
-    }
+      /* SVG container */
+      .school-logo-svg {
+        width: 130px;
+        height: 130px;
+      }
 
-    /* Circle animation */
-    .circle {
-      stroke-dasharray: 283;
-      stroke-dashoffset: 283;
-      transform-origin: 50% 50%;
-      animation: circle-spin 2s ease-in-out infinite;
-    }
+      /* Circle animation */
+      .circle {
+        stroke-dasharray: 283;
+        stroke-dashoffset: 283;
+        transform-origin: 50% 50%;
+        animation: circle-spin 2s ease-in-out infinite;
+      }
 
-    @keyframes circle-spin {
-      0%   { stroke-dashoffset: 283; transform: rotate(0deg); }
-      50%  { stroke-dashoffset: 70; transform: rotate(180deg); }
-      100% { stroke-dashoffset: 283; transform: rotate(360deg); }
-    }
+      @keyframes circle-spin {
+        0% {
+          stroke-dashoffset: 283;
+          transform: rotate(0deg);
+        }
+        50% {
+          stroke-dashoffset: 70;
+          transform: rotate(180deg);
+        }
+        100% {
+          stroke-dashoffset: 283;
+          transform: rotate(360deg);
+        }
+      }
 
-    /* GB text animation */
-    .logo-text {
-      opacity: 0;
-      animation: text-fade 2s ease-in-out infinite;
-    }
+      /* GB text animation */
+      .logo-text {
+        opacity: 0;
+        animation: text-fade 2s ease-in-out infinite;
+      }
 
-    @keyframes text-fade {
-      0%   { opacity: 0; }
-      40%  { opacity: 1; }
-      60%  { opacity: 1; }
-      100% { opacity: 0; }
-    }
-  </style>
-   <div class="loader-wrapper" id="loader">
-    <svg class="school-logo-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <!-- Animated Circle -->
-      <circle class="circle" cx="60" cy="60" r="55" stroke="#ffd700" stroke-width="4" fill="transparent"/>
-      <!-- GBMS Text -->
-      <text class="logo-text" x="50%" y="55%" text-anchor="middle" fill="#ffd700"
-            font-size="26" font-family="Arial, sans-serif" font-weight="bold">
-        GBMS
-      </text>
-    </svg>
-    <!-- School full name -->
-    <!-- <div class="school-name">Gopi Birla Memorial School</div> -->
-  </div>
+      @keyframes text-fade {
+        0% {
+          opacity: 0;
+        }
+        40% {
+          opacity: 1;
+        }
+        60% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+    <div class="loader-wrapper" id="loader">
+      <svg
+        class="school-logo-svg"
+        viewBox="0 0 120 120"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <!-- Animated Circle -->
+        <circle
+          class="circle"
+          cx="60"
+          cy="60"
+          r="55"
+          stroke="#ffd700"
+          stroke-width="4"
+          fill="transparent"
+        />
+        <!-- GBMS Text -->
+        <text
+          class="logo-text"
+          x="50%"
+          y="55%"
+          text-anchor="middle"
+          fill="#ffd700"
+          font-size="26"
+          font-family="Arial, sans-serif"
+          font-weight="bold"
+        >
+          GBMS
+        </text>
+      </svg>
+      <!-- School full name -->
+      <!-- <div class="school-name">Gopi Birla Memorial School</div> -->
+    </div>
 
     <script>
       // Select the correct loader wrapper based on the option you chose
@@ -978,6 +1015,152 @@
       </div>
     </footer>
 
+    <a
+      href="#"
+      class="admission-fab"
+      data-bs-toggle="modal"
+      data-bs-target="#admissionModal"
+      title="Admission Enquiry"
+    >
+      <i class="fa-solid fa-file-signature"></i>
+    </a>
+    <!-- 2. The Bootstrap Modal (Popup) - UPDATED -->
+    <div
+      class="modal fade"
+      id="admissionModal"
+      tabindex="-1"
+      aria-labelledby="admissionModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+          <div class="modal-header">
+            <h5 class="modal-title" id="admissionModalLabel">
+              Admission Enquiry
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-4">
+            <p class="text-muted mb-4">
+              Fill out the form below and our team will get back to you shortly.
+            </p>
+
+            <!-- NOTE: You will need to add a backend script to process this form data -->
+            <form
+              id="admission-form"
+              action="/your-submission-url"
+              method="POST"
+            >
+              <!-- Updated Form Fields -->
+              <div class="mb-3">
+                <label for="parentName" class="form-label">Parent Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="parentName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="mobileNumber" class="form-label"
+                  >Mobile Number</label
+                >
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="mobileNumber"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="studentName" class="form-label">Student Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="studentName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="admissionClass" class="form-label"
+                  >Class for Admission</label
+                >
+                <select class="form-select" id="admissionClass" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option>Playgroup</option>
+                  <option>Nursery</option>
+                  <option>Jr. KG</option>
+                  <option>Sr. KG</option>
+                  <option>Grade 1</option>
+                  <option>Grade 2</option>
+                  <option>Grade 3</option>
+                  <option>Grade 4</option>
+                  <option>Grade 5</option>
+                  <option>Grade 6</option>
+                  <option>Grade 7</option>
+                  <option>Grade 8</option>
+                  <option>Grade 9</option>
+                  <option>Grade 10</option>
+                  <option>Grade 11</option>
+                  <option>Grade 12</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer border-0 d-flex">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <!-- Updated Button -->
+            <button
+              type="submit"
+              form="admission-form"
+              class="btn btn-admission-submit flex-grow-1"
+            >
+              👉 Get Admission Info
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- === END OF SECTION HTML === -->
+    <!-- === JAVASCRIPT LIBRARIES (Add before your closing </body> tag) === -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. Define the delay in milliseconds (e.g., 2500ms = 2.5 seconds)
+        const popupDelay = 2500;
+
+        // 2. Get the modal element
+        const admissionModalEl = document.getElementById("admissionModal");
+
+        // Check if the modal element exists on the page
+        if (admissionModalEl) {
+          const admissionModal = new bootstrap.Modal(admissionModalEl);
+
+          // 3. Check if the popup has already been shown in this session
+          const popupShown = sessionStorage.getItem("admissionPopupShown");
+
+        //  if (!popupShown) {
+            // 4. If not shown, wait for the delay and then show the popup
+            setTimeout(function () {
+             admissionModal.show();
+              // 5. Set a flag in sessionStorage so it doesn't show again
+          //    sessionStorage.setItem("admissionPopupShown", "true");
+           }, popupDelay);
+         //}
+        }
+      });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 

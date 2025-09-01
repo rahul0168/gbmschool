@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gopi Birla Memorial School</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Loader wrapper */
+      .loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0a2a6b; /* Brand blue */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
+
+      .loader-wrapper.loaded {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      /* SVG container */
+      .school-logo-svg {
+        width: 130px;
+        height: 130px;
+      }
+
+      /* Circle animation */
+      .circle {
+        stroke-dasharray: 283;
+        stroke-dashoffset: 283;
+        transform-origin: 50% 50%;
+        animation: circle-spin 2s ease-in-out infinite;
+      }
+
+      @keyframes circle-spin {
+        0% {
+          stroke-dashoffset: 283;
+          transform: rotate(0deg);
+        }
+        50% {
+          stroke-dashoffset: 70;
+          transform: rotate(180deg);
+        }
+        100% {
+          stroke-dashoffset: 283;
+          transform: rotate(360deg);
+        }
+      }
+
+      /* GB text animation */
+      .logo-text {
+        opacity: 0;
+        animation: text-fade 2s ease-in-out infinite;
+      }
+
+      @keyframes text-fade {
+        0% {
+          opacity: 0;
+        }
+        40% {
+          opacity: 1;
+        }
+        60% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+    <div class="loader-wrapper" id="loader">
+      <svg
+        class="school-logo-svg"
+        viewBox="0 0 120 120"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <!-- Animated Circle -->
+        <circle
+          class="circle"
+          cx="60"
+          cy="60"
+          r="55"
+          stroke="#ffd700"
+          stroke-width="4"
+          fill="transparent"
+        />
+        <!-- GBMS Text -->
+        <text
+          class="logo-text"
+          x="50%"
+          y="55%"
+          text-anchor="middle"
+          fill="#ffd700"
+          font-size="26"
+          font-family="Arial, sans-serif"
+          font-weight="bold"
+        >
+          GBMS
+        </text>
+      </svg>
+      <!-- School full name -->
+      <!-- <div class="school-name">Gopi Birla Memorial School</div> -->
+    </div>
+
+    <script>
+      // Select the correct loader wrapper based on the option you chose
+      const loaderWrapper = document.querySelector(".loader-wrapper"); // or .loader-wrapper-2, or .loader-wrapper-3
+
+      window.addEventListener("load", () => {
+        if (loaderWrapper) {
+          loaderWrapper.classList.add("loaded");
+        }
+      });
+    </script>
+
+    <!-- Off-Canvas Menu -->
+    <div id="menu-backdrop" class="menu-backdrop"></div>
+    <nav id="offcanvas-menu" class="offcanvas-menu">
+      <div class="menu-header">
+        <button id="close-menu-btn" class="menu-close-btn">
+          <span class="icon-box"><i class="fa-solid fa-times"></i></span
+          ><span>CLOSE</span></button
+        ><a href="#" class="portal-link"
+          ><i class="fa-solid fa-lock"></i><span>PORTAL</span></a
+        >
+      </div>
+      <ul class="menu-nav-links">
+        <li><a href="#">Home</a></li>
+        <li class="has-submenu">
+          <a href="#"
+            ><span>Life at ASB</span> <i class="fa-solid fa-chevron-right"></i
+          ></a>
+          <ul class="submenu">
+            <li><a href="#">Athletics</a></li>
+            <li><a href="#">Arts & Culture</a></li>
+            <li><a href="#">Student Life</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="#"
+            ><span>Curriculum & Learning</span>
+            <i class="fa-solid fa-chevron-right"></i
+          ></a>
+          <ul class="submenu">
+            <li><a href="#">Elementary School</a></li>
+            <li><a href="#">Middle School</a></li>
+            <li><a href="#">High School</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"
+            ><span>Beyond the Classroom</span>
+            <i class="fa-solid fa-chevron-right"></i
+          ></a>
+        </li>
+        <li class="has-submenu">
+          <a href="#"
+            ><span>Join Our School</span>
+            <i class="fa-solid fa-chevron-right"></i
+          ></a>
+          <ul class="submenu">
+            <li><a href="#">Admissions Process</a></li>
+            <li><a href="#">Tuition & Fees</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"
+            ><span>Our Community</span> <i class="fa-solid fa-chevron-right"></i
+          ></a>
+        </li>
+      </ul>
+      <div class="menu-search">
+        <input type="text" placeholder="SEARCH" /><i
+          class="fa-solid fa-search"
+        ></i>
+      </div>
+      <img
+        src="https://www.svgrepo.com/show/490455/microscope.svg"
+        alt="Illustration"
+        class="menu-illustration"
+      />
+    </nav>
+
+    <!-- Header & Hero -->
+    <header>
+      <div class="top-bar">
+        Located in the heart of Mumbai, India, the American School of Bombay is
+        a coeducational, independent, IB day school from Pre-K to Grade 12.
+      </div>
+      <section class="hero-section">
+        <div class="video-overlay"></div>
+        <video playsinline autoplay muted loop id="heroVideo">
+          <source src="3195392-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+        </video>
+        <nav class="main-nav">
+          <div class="nav-left">
+            <div class="menu-btn" data-menu-toggle>
+              <div class="hamburger-icon">
+                <span></span>
+                <span></span>
+              </div>
+              <span>MENU</span>
+            </div>
+            <span>LANGUAGE</span>
+          </div>
+          <div class="nav-logo">
+            <span
+              ><img
+                src="https://www.gbmschool.co.in/assets/gopi-birla-memorial-school-logo.png"
+                alt=""
+                style="
+                  width: 44%;
+                  margin-left: auto;
+                  margin-right: auto;
+                  display: block;
+                "
+            /></span>
+          </div>
+          <div class="nav-right">
+            <a href="#">ADMISSIONS</a><a href="#">STORIES</a
+            ><a href="#">WORK AT ASB</a>
+          </div>
+        </nav>
+        <div class="scroll-indicator">
+          <i class="fa-solid fa-arrow-down"></i>
+          <div>SCROLL</div>
+        </div>
+      </section>
+    </header>
+
+    <!-- Sticky Navigation Bar (initially hidden) -->
+    <div id="sticky-nav" class="sticky-nav">
+      <div class="menu-btn" data-menu-toggle>
+        <div class="hamburger-icon">
+          <span></span>
+          <span></span>
+        </div>
+        <span>MENU</span>
+      </div>
+      <div class="nav-right">
+        <a href="#">ADMISSIONS</a><a href="#">STORIES</a
+        ><a href="#">WORK AT ASB</a>
+      </div>
+    </div>
+
+    <main>
+      <div class="gbms-full-container">
+        <div class="gbms-full-content">
+          <h1 class="gbms-full-title">
+            <span
+              ><span class="gbms-title-line-inner"
+                >Welcome to Gopi Birla</span
+              ></span
+            >
+            <span
+              ><span class="gbms-title-line-inner">Memorial School</span></span
+            >
+          </h1>
+          <div class="gbms-full-divider"></div>
+          <p class="gbms-full-tagline">GBMS</p>
+          <div class="gbms-full-text-block">
+            <div class="row">
+              <div class="col-md-6">
+                <p>
+                  Founded in 1953 by Shrimati Gopi Birla, our school served the
+                  long felt need of an institution facilitating girls education
+                  to equip them for a rapidly changing society while staying
+                  true to Indian culture and values.
+                </p>
+                <p>
+                  In 1970, Birla Balika Vidya Mandir, as it was known then,
+                  gained affiliation with the Central Board of Secondary
+                  Education (CBSE).
+                </p>
+                <p>
+                  In the year 1975, Birla Balika Vidya Mandir became Birla
+                  Public School, a co-educational institution.
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  Later, in the year 1995 BPS was renamed Gopi Birla Memorial
+                  School, following the death of our beloved founder, to whose
+                  guiding spirit GBMS owes its status as one of the leading
+                  educational institutions in the city.
+                </p>
+                <p>
+                  Gopi Birla Memorial School comes under the Birla Industries
+                  Group Charitable Trust (BIGCT). We are also an integral part
+                  of the Yash Birla Group Community.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- GSAP Library -->
+
+      <section class="achievers-section">
+        <!-- Header Section -->
+        <div class="achievers-header text-center py-5">
+          <div class="container">
+            <h2 class="display-5 fw-bold anim-header-title">
+              Celebrating Academic Excellence
+            </h2>
+            <p class="lead fs-5 anim-header-subtitle">
+              Congratulations to Our Bright Achievers of Class 10 & 12 Students
+            </p>
+          </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="achievers-gallery py-5">
+          <div class="container">
+            <!-- Science Toppers -->
+            <div class="text-center mb-5">
+              <h3 class="stream-title">Grade 12 Toppers (Science)</h3>
+            </div>
+            <div class="row g-4 justify-content-center">
+              <div class="col-lg-4 col-md-6">
+                <div class="achiever-card text-center p-4">
+                  <div class="rank-badge rank-1">1</div>
+                  <div class="achiever-photo mt-3">
+                    <img
+                      src="https://i.imgur.com/WJzQZ2E.jpg"
+                      alt="Khushita Arun Haldavnekar"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="achiever-name text-uppercase mt-3">
+                      Khushita Arun Haldavnekar
+                    </h5>
+                    <p class="achiever-score mb-0">95.6<small>%</small></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div class="achiever-card text-center p-4">
+                  <div class="rank-badge rank-2">2</div>
+                  <div class="achiever-photo mt-3">
+                    <img
+                      src="https://i.imgur.com/2P1b27B.jpg"
+                      alt="Prisha Pankaj Sawant"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="achiever-name text-uppercase mt-3">
+                      Prisha Pankaj Sawant
+                    </h5>
+                    <p class="achiever-score mb-0">92.8<small>%</small></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div class="achiever-card text-center p-4">
+                  <div class="rank-badge rank-3">3</div>
+                  <div class="achiever-photo mt-3">
+                    <img
+                      src="https://i.imgur.com/hY1P3C3.jpg"
+                      alt="Swar Bodke"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="achiever-name text-uppercase mt-3">
+                      Swar Bodke
+                    </h5>
+                    <p class="achiever-score mb-0">92.6<small>%</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Commerce Toppers -->
+            <div class="text-center mt-5 pt-4 mb-5">
+              <h3 class="stream-title">Grade 12 Toppers (Commerce)</h3>
+            </div>
+            <div class="row g-4 justify-content-center">
+              <div class="col-lg-4 col-md-6">
+                <div class="achiever-card text-center p-4">
+                  <div class="rank-badge rank-1">1</div>
+                  <div class="achiever-photo mt-3">
+                    <img
+                      src="https://i.imgur.com/J36vR3B.jpg"
+                      alt="Manan Parekh"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="achiever-name text-uppercase mt-3">
+                      Manan Parekh
+                    </h5>
+                    <p class="achiever-score mb-0">90.8<small>%</small></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <div class="achiever-card text-center p-4">
+                  <div class="rank-badge rank-2">2</div>
+                  <div class="achiever-photo mt-3">
+                    <img
+                      src="https://i.imgur.com/gK1nIqf.jpg"
+                      alt="Rushin Shah"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="achiever-name text-uppercase mt-3">
+                      Rushin Shah
+                    </h5>
+                    <p class="achiever-score mb-0">89<small>%</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+      />
+      <!-- === SECTION HTML === -->
+      <section class="gallery-section py-5">
+        <div class="container">
+          <!-- Section Title -->
+          <div class="row">
+            <div class="col-12 text-center mb-5">
+              <h2 class="gallery-section-title fw-bold">Our Gallery</h2>
+            </div>
+          </div>
+
+          <!-- Gallery Tabs Navigation -->
+          <ul
+            class="nav nav-tabs justify-content-center border-0 mb-4 gallery-tabs"
+            id="galleryTab"
+            role="tablist"
+          >
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="photos-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#photos-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="photos-tab-pane"
+                aria-selected="true"
+              >
+                Photo Gallery
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="videos-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#videos-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="videos-tab-pane"
+                aria-selected="false"
+              >
+                Video Gallery
+              </button>
+            </li>
+          </ul>
+
+          <!-- Gallery Tabs Content -->
+          <div class="tab-content" id="galleryTabContent">
+            <!-- Photos Pane -->
+            <div
+              class="tab-pane fade show active"
+              id="photos-tab-pane"
+              role="tabpanel"
+              aria-labelledby="photos-tab"
+              tabindex="0"
+            >
+              <div class="row g-4">
+                <div class="col-lg-3 col-md-4 col-6">
+                  <a
+                    href="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070"
+                    data-fancybox="photos"
+                    data-caption="Students in the library"
+                    class="gallery-item"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=600"
+                      alt="Library"
+                    />
+                    <div class="gallery-overlay">
+                      <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                  <a
+                    href="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070"
+                    data-fancybox="photos"
+                    data-caption="Graduation Ceremony"
+                    class="gallery-item"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600"
+                      alt="Graduation"
+                    />
+                    <div class="gallery-overlay">
+                      <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                  <a
+                    href="https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?q=80&w=2072"
+                    data-fancybox="photos"
+                    data-caption="Science Lab Experiments"
+                    class="gallery-item"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?q=80&w=600"
+                      alt="Science Lab"
+                    />
+                    <div class="gallery-overlay">
+                      <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                  <a
+                    href="https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?q=80&w=600"
+                    data-fancybox="photos"
+                    data-caption="Annual Sports Day"
+                    class="gallery-item"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?q=80&w=600"
+                      alt="Sports Day"
+                    />
+                    <div class="gallery-overlay">
+                      <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                  </a>
+                </div>
+                <!-- Add up to 8 photos for a good look -->
+              </div>
+            </div>
+            <!-- Videos Pane -->
+            <div
+              class="tab-pane fade"
+              id="videos-tab-pane"
+              role="tabpanel"
+              aria-labelledby="videos-tab"
+              tabindex="0"
+            >
+              <div class="row g-4">
+                <div class="col-lg-3 col-md-4 col-6">
+                  <!-- Link directly to YouTube video URL -->
+                  <a
+                    href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
+                    data-fancybox="videos"
+                    data-caption="Campus Tour"
+                    class="gallery-item"
+                  >
+                    <img
+                      src="https://img.youtube.com/vi/LXb3EKWsInQ/hqdefault.jpg"
+                      alt="Campus Tour Video Thumbnail"
+                    />
+                    <div class="gallery-overlay">
+                      <i class="fa-solid fa-play"></i>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6">
+                  <a
+                    href="https://www.youtube.com/watch?v=m-248-zG31A"
+                    data-fancybox="videos"
+                    data-caption="Annual Day Function Highlights"
+                    class="gallery-item"
+                  >
+                    <img
+                      src="https://img.youtube.com/vi/m-248-zG31A/hqdefault.jpg"
+                      alt="Annual Day Video Thumbnail"
+                    />
+                    <div class="gallery-overlay">
+                      <i class="fa-solid fa-play"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- === SECTION HTML === -->
+      <section class="director-message-section py-5">
+        <div class="container">
+          <!-- Section Title -->
+          <div class="row">
+            <div class="col-12 text-center text-white mb-5">
+              <h2 class="section-title fw-bold">
+                Words from Our Managing Director
+              </h2>
+            </div>
+          </div>
+
+          <div class="row align-items-center g-5">
+            <!-- Director's Photo Column -->
+            <div class="col-lg-4">
+              <div class="director-photo-card text-center text-white p-3">
+                <img
+                  src="https://i.imgur.com/vHMDkba.png"
+                  alt="Mr. Nirvaan Birla"
+                  class="img-fluid rounded-3 mb-3"
+                />
+                <h4 class="fw-bold mb-1">Mr. Nirvaan Birla</h4>
+                <p class="mb-0 opacity-75 small">
+                  Managing Director, Birla Open Minds Education Pvt. Ltd.
+                </p>
+              </div>
+            </div>
+            <!-- Message Column -->
+            <div class="col-lg-8">
+              <div class="message-box p-5">
+                <i class="fa-solid fa-quote-left quote-icon-bg"></i>
+                <div class="message-content">
+                  <p class="lead text-secondary">
+                    Dear Students, Parents and Staff members,
+                  </p>
+                  <p>
+                    It fills my heart with immense pride and gratitude as we
+                    celebrate another year of remarkable achievements at GBMS.
+                    The outstanding results we've witnessed... are a testament
+                    to the power of collaboration and a shared vision for a
+                    brighter future.
+                  </p>
+                  <p>
+                    I would like to acknowledge the tireless efforts of our
+                    esteemed faculty and staff, in nurturing young minds and
+                    fostering a love of learning. Their passion and expertise
+                    have undoubtedly played a vital role in the remarkable
+                    results we celebrate today.
+                  </p>
+                  <p>
+                    As we look ahead to the future, I am confident that GBMS
+                    will continue to thrive, making a significant impact on the
+                    lives of our students and the community we serve. Together,
+                    we will continue to strive for excellence and create a world
+                    of positive change.
+                  </p>
+                  <div class="text-end mt-4">
+                    <p class="signature-font mb-1">Mr. Nirvaan Birla</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- === END OF SECTION HTML === -->
+      <!-- === JAVASCRIPT LIBRARIES (Add before your closing </body> tag) === -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+      <!-- GSAP Animation Logic -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          gsap.registerPlugin(ScrollTrigger);
+
+          // Set initial states
+          gsap.set(".section-title", { y: 30, opacity: 0 });
+          gsap.set(".director-photo-card", { y: 30, opacity: 0 });
+          gsap.set(".message-box", { x: 30, opacity: 0 });
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".director-message-section",
+              start: "top 60%",
+              toggleActions: "play none none none",
+            },
+          });
+
+          tl.to(".section-title", {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          })
+            .to(
+              ".director-photo-card",
+              { y: 0, opacity: 1, duration: 1, ease: "power3.out" },
+              "-=0.6"
+            )
+            .to(
+              ".message-box",
+              { x: 0, opacity: 1, duration: 1, ease: "power3.out" },
+              "-=0.8"
+            );
+        });
+      </script>
+
+      <!-- === SECTION HTML === -->
+      <section class="news-section py-5">
+        <div class="container">
+          <!-- Section Title -->
+          <div class="row">
+            <div class="col-12 text-center mb-5">
+              <h2 class="news-section-title fw-bold">Latest News & Events</h2>
+            </div>
+          </div>
+
+          <div class="row g-5">
+            <!-- Featured Article Column -->
+            <div class="col-lg-7">
+              <div class="news-card-featured">
+                <div class="news-img-wrapper">
+                  <img
+                    src="https://images.unsplash.com/photo-1576765683436-573587035544?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200"
+                    alt="Annual Sports Day"
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="p-4">
+                  <span class="badge news-tag text-uppercase mb-2">Events</span>
+                  <h3 class="news-title h4 fw-bold mb-2">
+                    <a href="#"
+                      >Annual Sports Day 2024: A Celebration of Talent and Team
+                      Spirit</a
+                    >
+                  </h3>
+                  <p class="text-muted small mb-3">
+                    Posted on: 15th August 2024
+                  </p>
+                  <p class="text-secondary">
+                    Our campus was alive with energy and enthusiasm during the
+                    Annual Sports Day, where students showcased incredible
+                    athleticism and sportsmanship...
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Secondary Articles Column -->
+            <div class="col-lg-5">
+              <div class="vstack gap-4">
+                <!-- Secondary Item 1 -->
+                <div class="news-card-secondary d-flex p-3">
+                  <img
+                    src="https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=400"
+                    alt="Science Exhibition"
+                    class="secondary-img me-3"
+                  />
+                  <div>
+                    <h4 class="secondary-title mb-1">
+                      <a href="#"
+                        >Innovations Shine at the Annual Science Exhibition</a
+                      >
+                    </h4>
+                    <p class="text-muted small mb-0">10th August 2024</p>
+                  </div>
+                </div>
+                <!-- Secondary Item 2 -->
+                <div class="news-card-secondary d-flex p-3">
+                  <img
+                    src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=400"
+                    alt="Community Outreach"
+                    class="secondary-img me-3"
+                  />
+                  <div>
+                    <h4 class="secondary-title mb-1">
+                      <a href="#"
+                        >Students Lead Successful Community Outreach Program</a
+                      >
+                    </h4>
+                    <p class="text-muted small mb-0">5th August 2024</p>
+                  </div>
+                </div>
+                <!-- Secondary Item 3 -->
+                <div class="news-card-secondary d-flex p-3">
+                  <img
+                    src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=400"
+                    alt="Debate Competition"
+                    class="secondary-img me-3"
+                  />
+                  <div>
+                    <h4 class="secondary-title mb-1">
+                      <a href="#"
+                        >Inter-School Debate Competition Winners Announced</a
+                      >
+                    </h4>
+                    <p class="text-muted small mb-0">1st August 2024</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mission-section d-none">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-7">
+              <p>
+                We inspire all of our students to continuous inquiry, empowering
+                them with the skills, courage, optimism, and integrity to pursue
+                their dreams and enhance the lives of others.
+              </p>
+            </div>
+            <div class="col-lg-5 text-center">
+              <img
+                src="https://www.svgrepo.com/show/289299/climbing.svg"
+                alt="Climbing Illustration"
+                class="mission-illustration"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pathways-section d-none">
+        <div class="container text-center">
+          <h2 class="pathways-title">
+            Individualized <br />
+            <strong>Pathways</strong>
+          </h2>
+          <p class="pathways-subtitle">
+            Students are empowered by dreams, and they are equipped with skills
+            to <a href="#">become life-long learners.</a>
+          </p>
+        </div>
+        <div class="pathways-container">
+          <div id="banyan-tree" class="pathways-element" data-speed="0.5">
+            <img
+              src="https://www.svgrepo.com/show/493406/banyan-tree.svg"
+              alt="Banyan Tree Illustration"
+            />
+          </div>
+          <div
+            id="card-1"
+            class="pathways-element pathways-card"
+            data-speed="1.3"
+          >
+            <span class="social-icon"><i class="fab fa-instagram"></i></span
+            ><img
+              src="https://images.unsplash.com/photo-1594434533433-03b4d08b5d43?q=80&w=400"
+              alt="Students celebrating"
+            />
+            <h5>Honoring the past. Celebrating the...</h5>
+            <a href="#" class="read-story">Read story ></a>
+          </div>
+          <div
+            id="card-2"
+            class="pathways-element pathways-card"
+            data-speed="0.8"
+          >
+            <span class="social-icon"><i class="fab fa-instagram"></i></span
+            ><img
+              src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=400"
+              alt="Students playing"
+            />
+            <h5>New year. New possibilities. Endless...</h5>
+            <a href="#" class="read-story">Read story ></a>
+          </div>
+          <div
+            id="card-3"
+            class="pathways-element pathways-card"
+            data-speed="1.1"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=400"
+              alt="Student project"
+            />
+            <h5>Immediate Opening: Secondary ...</h5>
+            <a href="#" class="read-story">Read story ></a>
+          </div>
+          <div
+            id="card-4"
+            class="pathways-element pathways-card"
+            data-speed="1.2"
+          >
+            <span class="social-icon"><i class="fab fa-facebook-f"></i></span
+            ><img
+              src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=400"
+              alt="Teacher with kids"
+            />
+            <h5>This morning, ASB's High School (HS)...</h5>
+            <a href="#" class="read-story">Read story ></a>
+          </div>
+          <div
+            id="card-5"
+            class="pathways-element pathways-card"
+            data-speed="0.7"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=400"
+              alt="Classroom"
+            />
+            <h5>From baby steps to bold futures... You've...</h5>
+            <a href="#" class="read-story">Read story ></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- New Full Width Video Section -->
+      <section class="video-feature-section d-none">
+        <div class="video-overlay"></div>
+        <video playsinline autoplay muted loop id="featureVideo">
+          <source
+            src="https://assets.mixkit.co/videos/preview/mixkit-group-of-students-in-a-library-857-large.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <div class="container">
+          <div class="video-feature-content">
+            <h2>Discover Our Community</h2>
+            <a href="#" class="btn-custom">EXPLORE STUDENT LIFE</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h5>Elementary Campus</h5>
+            <p>
+              PreK – Grade 5 (3-11-year-olds)<br />Commercial 2, Tower 4<br />Kohinoor
+              City, Off LBS Marg<br />Kurla (W), Mumbai 400070.
+            </p>
+            <a href="#" class="footer-link">GET DIRECTIONS</a>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h5>Secondary Campus</h5>
+            <p>
+              Middle School (11-14-year-olds)<br />High School
+              (14-18-year-olds)<br />SF2, G Block, Bandra-Kurla Complex Road,<br />Bandra
+              (E), Mumbai 400051.
+            </p>
+            <a href="#" class="footer-link">GET DIRECTIONS</a>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h5>Contact Us</h5>
+            <a href="#" class="footer-link">+91 22 6772 7272</a
+            ><a href="#" class="footer-link">SEND AN INQUIRY</a>
+            <h5 class="mt-4">Key Links</h5>
+            <a href="#" class="footer-link">ADMISSIONS</a
+            ><a href="#" class="footer-link">VACANCIES</a>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <h5>Connect With</h5>
+            <p>@AmericanSchoolOfBombay</p>
+            <div class="social-icons-footer">
+              <a href="#"><i class="fab fa-facebook-f"></i></a
+              ><a href="#"><i class="fab fa-instagram"></i></a
+              ><a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="mt-4">
+              Learn more about our commitment to
+              <a href="#" class="footer-link d-inline">Student Safeguarding</a>
+            </p>
+          </div>
+        </div>
+        <div class="d-flex align-items-center footer-logos mt-4">
+          <img
+            src="https://www.ibo.org/contentassets/75854f3569474811843c6838a113d74a/logo-ib-110.png"
+            alt="IB Diploma Programme"
+          /><img
+            src="https://upload.wikimedia.org/wikipedia/en/b/b3/MSA-CESS_Logo.png"
+            alt="MSA CESS"
+          /><img
+            src="https://www.nesacenter.org/images/nesa-logo_white-horiz.png"
+            alt="NESA"
+          />
+        </div>
+        <div class="footer-bottom d-flex justify-content-between">
+          <div>TERMS | SITEMAP</div>
+          <div>#SCHOOLWEBSITE</div>
+        </div>
+      </div>
+    </footer>
+
+    <a
+      href="#"
+      class="admission-fab"
+      data-bs-toggle="modal"
+      data-bs-target="#admissionModal"
+      title="Admission Enquiry"
+    >
+      <i class="fa-solid fa-file-signature"></i>
+    </a>
+    <!-- 2. The Bootstrap Modal (Popup) - UPDATED -->
+    <div
+      class="modal fade"
+      id="admissionModal"
+      tabindex="-1"
+      aria-labelledby="admissionModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+          <div class="modal-header">
+            <h5 class="modal-title" id="admissionModalLabel">
+              Admission Enquiry
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-4">
+            <p class="text-muted mb-4">
+              Fill out the form below and our team will get back to you shortly.
+            </p>
+
+            <!-- NOTE: You will need to add a backend script to process this form data -->
+            <form
+              id="admission-form"
+              action="/your-submission-url"
+              method="POST"
+            >
+              <!-- Updated Form Fields -->
+              <div class="mb-3">
+                <label for="parentName" class="form-label">Parent Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="parentName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="mobileNumber" class="form-label"
+                  >Mobile Number</label
+                >
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="mobileNumber"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="studentName" class="form-label">Student Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="studentName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="admissionClass" class="form-label"
+                  >Class for Admission</label
+                >
+                <select class="form-select" id="admissionClass" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option>Playgroup</option>
+                  <option>Nursery</option>
+                  <option>Jr. KG</option>
+                  <option>Sr. KG</option>
+                  <option>Grade 1</option>
+                  <option>Grade 2</option>
+                  <option>Grade 3</option>
+                  <option>Grade 4</option>
+                  <option>Grade 5</option>
+                  <option>Grade 6</option>
+                  <option>Grade 7</option>
+                  <option>Grade 8</option>
+                  <option>Grade 9</option>
+                  <option>Grade 10</option>
+                  <option>Grade 11</option>
+                  <option>Grade 12</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer border-0 d-flex">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <!-- Updated Button -->
+            <button
+              type="submit"
+              form="admission-form"
+              class="btn btn-admission-submit flex-grow-1"
+            >
+              👉 Get Admission Info
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- === END OF SECTION HTML === -->
+    <!-- === JAVASCRIPT LIBRARIES (Add before your closing </body> tag) === -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. Define the delay in milliseconds (e.g., 2500ms = 2.5 seconds)
+        const popupDelay = 2500;
+
+        // 2. Get the modal element
+        const admissionModalEl = document.getElementById("admissionModal");
+
+        // Check if the modal element exists on the page
+        if (admissionModalEl) {
+          const admissionModal = new bootstrap.Modal(admissionModalEl);
+
+          // 3. Check if the popup has already been shown in this session
+          const popupShown = sessionStorage.getItem("admissionPopupShown");
+
+        //  if (!popupShown) {
+            // 4. If not shown, wait for the delay and then show the popup
+            setTimeout(function () {
+             admissionModal.show();
+              // 5. Set a flag in sessionStorage so it doesn't show again
+          //    sessionStorage.setItem("admissionPopupShown", "true");
+           }, popupDelay);
+         //}
+        }
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const offcanvasMenu = document.getElementById("offcanvas-menu");
+        const menuBackdrop = document.getElementById("menu-backdrop");
+        const closeMenuBtn = document.getElementById("close-menu-btn");
+
+        const openMenu = () => {
+          offcanvasMenu.classList.add("open");
+          menuBackdrop.classList.add("open");
+        };
+        const closeMenu = () => {
+          offcanvasMenu.classList.remove("open");
+          menuBackdrop.classList.remove("open");
+        };
+
+        document
+          .querySelectorAll("[data-menu-toggle]")
+          .forEach((btn) => btn.addEventListener("click", openMenu));
+        closeMenuBtn.addEventListener("click", closeMenu);
+        menuBackdrop.addEventListener("click", closeMenu);
+
+        document.querySelectorAll(".has-submenu > a").forEach((toggle) => {
+          toggle.addEventListener("click", (event) => {
+            event.preventDefault();
+            toggle.parentElement.classList.toggle("open");
+          });
+        });
+
+        const stickyNav = document.getElementById("sticky-nav");
+        const heroSection = document.querySelector(".hero-section");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > heroSection.offsetHeight - 50) {
+            stickyNav.classList.add("visible");
+          } else {
+            stickyNav.classList.remove("visible");
+          }
+        });
+
+        if (window.innerWidth > 992) {
+          gsap.registerPlugin(ScrollTrigger);
+          gsap.utils.toArray(".pathways-element").forEach((element) => {
+            const speed = element.dataset.speed || 1;
+            const yPercentMovement = -(speed * 50);
+            gsap.to(element, {
+              yPercent: yPercentMovement,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".pathways-section",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<!-- Bootstrap 5 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FancyBox 4 JS -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+<!-- Optional: Custom initialization if needed -->
+<script>
+  // FancyBox will automatically initialize on elements with data-fancybox attribute.
+  // No custom JS is needed for the basic setup.
+  // You can add options here if you want to customize it.
+  Fancybox.bind("[data-fancybox]", {
+    // Your custom options
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const container = ".gbms-full-container";
+
+    // Set initial states for elements to be animated
+    gsap.set(".gbms-title-line-inner", { y: "110%" });
+    gsap.set(".gbms-full-divider", {
+      scaleX: 0,
+      transformOrigin: "center",
+    });
+    gsap.set(".gbms-full-tagline", { y: 20, opacity: 0 });
+    gsap.set(".gbms-full-text-block p", { y: 20, opacity: 0 });
+
+    // Create a timeline for a choreographed entrance animation
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top 70%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    tl.to(".gbms-title-line-inner", {
+      y: "0%",
+      duration: 1.2,
+      stagger: 0.15,
+      ease: "power4.out",
+    })
+      .to(
+        ".gbms-full-divider",
+        {
+          scaleX: 1,
+          duration: 0.8,
+          ease: "power3.out",
+        },
+        "-=0.7"
+      )
+      .to(
+        ".gbms-full-tagline",
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        "-=0.5"
+      )
+      .to(
+        ".gbms-full-text-block p",
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power2.out",
+        },
+        "-=0.4"
+      );
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animate the header
+    gsap.from(".anim-header-title", {
+      scrollTrigger: ".achievers-header",
+      duration: 0.8,
+      y: 30,
+      opacity: 0,
+      ease: "power2.out",
+    });
+    gsap.from(".anim-header-subtitle", {
+      scrollTrigger: ".achievers-header",
+      duration: 0.8,
+      delay: 0.2,
+      y: 30,
+      opacity: 0,
+      ease: "power2.out",
+    });
+
+    // Animate the student cards with a stagger effect
+    gsap.to(".achiever-card", {
+      scrollTrigger: {
+        trigger: ".achievers-gallery",
+        start: "top 80%", // Start animation when the top of the gallery is 80% from the top of the viewport
+        toggleActions: "play none none none",
+      },
+      duration: 0.8,
+      opacity: 1,
+      y: 0,
+      stagger: 0.2, // This creates the one-by-one effect
+      ease: "power3.out",
+    });
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".news-section",
+        start: "top 75%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    tl.from(".news-section-title", {
+      duration: 0.8,
+      y: 50,
+      opacity: 0,
+      ease: "power3.out",
+    })
+      .from(
+        ".news-card-featured",
+        {
+          duration: 1,
+          y: 50,
+          opacity: 0,
+          ease: "power3.out",
+        },
+        "-=0.6"
+      ) // Overlap animation
+      .from(
+        ".news-card-secondary",
+        {
+          duration: 0.8,
+          x: 50,
+          opacity: 0,
+          stagger: 0.2, // Animate one by one
+          ease: "power3.out",
+        },
+        "-=0.7"
+      ); // Overlap animation
+  });
+</script>
